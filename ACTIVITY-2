@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    float per;
+    printf("Hello user...please enter your percentile so that I can suggest you best colleges!\n");
+    scanf("%f", &per);
+
+    if (per >= 99.00000     ) {
+        printf("Congratulations! You are eligible for top government colleges like COEP, VJTI, SPCE, WCE, and PICT.\n");
+    } 
+    else if (per > 95.000000 && per < 99.00000) {
+        printf("Congratulations! You are eligible for lower branches in top government engineering colleges like COEP and PICT.\n");
+    } 
+    else if (per > 90.00000 && per <= 95.00000) {
+        printf("Congrats! You are eligible for tier 2 government colleges like GCE Karad, Walchand College of Engineering or top private institutes like VIT-P, MMCOE, or PVG.\n");
+    } 
+    else if (per > 8.0000 && per <= 90.0000) {
+        printf("Congratulations! You are eligible for lower branches in top private engineering colleges like MMCOE, DJSCE, TSEC, VIT-P, and PVG.\n");
+    } 
+    else if (per > 60.00000 && per <= 80.00000) {
+        printf("You are eligible for tier 3 colleges.\n");
+    } 
+    else {
+        printf("Sorry.cant predict college\n");
+    }
+
+    return 0;
+}
