@@ -1,22 +1,50 @@
 #include <stdio.h>
-
-int fibonacci(int n) {
-    if (n == 0) return 0;
-    if (n == 1) return 1;
-    return fibonacci(n-1) + fibonacci(n-2);
-}
-
-int main() {
-    int n;
-
-    printf("Enter the number of terms: ");
-    scanf("%d", &n);
-
-    printf("Fibonacci Series: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", fibonacci(i));
+#include <string.h>
+int string_length(char str[]) {
+    int length = 0;
+    while (str[length] != '\0') {
+        length++;
     }
-
-    printf("\n");
+    return length;
+}
+void concatenate_strings(char str1[], char str2[], char result[]) {
+    int i = 0, j = 0;
+    while (str1[i] != '\0') {
+        result[i] = str1[i];
+        i++;
+    }
+    while (str2[j] != '\0') {
+        result[i] = str2[j];
+        i++;
+        j++;
+    }
+    result[i] = '\0';
+}
+int compare_strings(char str1[], char str2[]) {
+    int i = 0;
+    while (str1[i] != '\0' && str2[i] != '\0') {
+        if (str1[i] != str2[i]) {
+            return 0;
+        }
+        i++;
+    }
+    return str1[i] == str2[i];
+}
+int main() {
+    char first_name[50], last_name[50], full_name[100];
+    printf("Enter first name: ");
+    fgets(first_name, sizeof(first_name), stdin);
+    first_name[strcspn(first_name, "\n")] = '\0';
+    printf("Enter last name: ");
+    fgets(last_name, sizeof(last_name), stdin);
+    last_name[strcspn(last_name, "\n")] = '\0';
+    printf("Length of first name: %d\n", string_length(first_name));
+    concatenate_strings(first_name, last_name, full_name);
+    printf("Full name: %s\n", full_name);  // Corrected this line
+    if (compare_strings(first_name, last_name)) {
+        printf("The first and last names are the same.\n");
+    } else {
+        printf("The first and last names are different.\n");
+    }
     return 0;
 }
