@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char name[50][20];      // Store names
+    char phone[50][15];     // Store phone numbers
+    char area[50][20];      // Store areas
+    int n = 0;
+    int choice, i, j;
+
+    while (1) {
+        printf("\n1. Add Entry\n");
+        printf("2. Display Directory\n");
+        printf("3. Sort by Phone Number\n");
+        printf("4. Find by Phone Number\n");
+        printf("5. Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        if (choice == 1) {
+            printf("Enter name : ");
+            scanf("%s", name[n]);
+            printf("Enter phone: ");
+            scanf("%s", phone[n]);
+            printf("Enter area : ");
+            scanf("%s", area[n]);
+
+            n++;
+            printf("Entry added!\n");
+        }
+
+        else if (choice == 2) {
+            printf("\n----- DIRECTORY -----\n");
+            for (i = 0; i < n; i++) {
+                printf("%s  -  %s  -  %s\n", name[i], phone[i], area[i]);
+            }
+        }
+
+        else if (choice == 3) {
+            for (i = 0; i < n - 1; i++) {
+                for (j = 0; j < n - i - 1; j++) {
+                    if (strcmp(phone[j], phone[j + 1]) > 0) {
+
+                        char tempPhone[15], tempArea[20], tempName[20];
+
+                        strcpy(tempPhone, phone[j]);
+                        strcpy(phone[j], phone[j + 1]);
+                        strcpy(phone[j + 1], tempPhone);
+
+                        strcpy(tempArea, area[j]);
+                        strcpy(area[j], area[j + 1]);
+                        strcpy(area[j + 1], tempArea);
+
+                        strcpy(tempName, name[j]);
+                        strcpy(name[j], name[j + 1]);
+                        strcpy(name[j + 1], tempName);
+                    }
+                }
+            }
+            printf("Sorted!\n");
+        }
+
+        else if (choice == 4) {
+            char search[15];
+            int found = 0;
+
+            printf("Enter phone to search: ");
+            scanf("%s", search);
+
+            for (i = 0; i < n; i++) {
+                if (strcmp(search, phone[i]) == 0) {
+                    printf("Name: %s\n", name[i]);
+                    printf("Area: %s\n", area[i]);
+                    found = 1;
+                }
+            }
+
+            if (!found)
+                printf("Number not found.\n");
+        }
+
+        else if (choice == 5) {
+            printf("Exiting...\n");
+            break;
+        }
+
+        else {
+            printf("Invalid choice.\n");
+        }
+    }
+
+    return 0;
+}
