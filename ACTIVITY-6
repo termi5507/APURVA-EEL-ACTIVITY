@@ -1,19 +1,15 @@
 #include <stdio.h>
 
-double cal(int steps, double w) {
-    return steps * 0.04 * w;
-}
-
-double totalCal(int *s, int i, double w) {
-    if (i == 5)
-        return 0;
-    return cal(s[i], w) + totalCal(s, i + 1, w);
-}
+double cal(int steps, double weight) {
+    double stepLength = 0.75; 
+    double distanceKm = steps * stepLength / 1000.0; 
+    return distanceKm * weight * 1.0; 
 
 int main() {
     int steps[5];
     double weight;
     int i;
+    double total = 0;
 
     printf("Enter your weight (kg): ");
     scanf("%lf", &weight);
@@ -21,13 +17,11 @@ int main() {
     for (i = 0; i < 5; i++) {
         printf("Steps on day %d: ", i + 1);
         scanf("%d", &steps[i]);
+        total += cal(steps[i], weight);
     }
 
-    double total = totalCal(steps, 0, weight);
-    double avg   = total / 5.0;
-
-    printf("\nTotal calories in 5 days = %.2f\n", total);
-    printf("Average per day          = %.2f\n", avg);
+    printf("\nTotal calories in 5 days = %.2f kcal\n", total);
+    printf("Average per day           = %.2f kcal\n", total / 5.0);
 
     return 0;
 }
