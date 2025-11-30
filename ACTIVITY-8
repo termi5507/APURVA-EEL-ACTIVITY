@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    FILE *fp;
+    char name[50];
+    char phone[20];
+     fp = fopen("contacts.txt", "a"); 
+    if (fp == NULL) {
+        printf("Error: Could not open file. Make sure you have write permission in this folder.\n");
+        return 1;
+    }
+     printf("Enter name: ");
+    fgets(name, sizeof(name), stdin);
+     printf("Enter phone number: ");
+    fgets(phone, sizeof(phone), stdin);
+    fprintf(fp, "Name: %sPhone: %s\n", name, phone);
+
+    fclose(fp);
+    printf("Contact saved successfully in contacts.txt!\n");
+
+    return 0;
+}
