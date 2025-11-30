@@ -1,27 +1,24 @@
 #include <stdio.h>
 
-double cal(int steps, double weight) {
-    double stepLength = 0.75; 
-    double distanceKm = steps * stepLength / 1000.0; 
-    return distanceKm * weight * 1.0; 
+int checkPrime(int n, int i) {
+    if (i == n)               
+     
+    if (n % i == 0)           
+        return 0;
+
+    return checkPrime(n, i + 1);   
+}
 
 int main() {
-    int steps[5];
-    double weight;
-    int i;
-    double total = 0;
+    int n;
+    scanf("Enter a number to check if its prime%d", &n);
 
-    printf("Enter your weight (kg): ");
-    scanf("%lf", &weight);
-
-    for (i = 0; i < 5; i++) {
-        printf("Steps on day %d: ", i + 1);
-        scanf("%d", &steps[i]);
-        total += cal(steps[i], weight);
-    }
-
-    printf("\nTotal calories in 5 days = %.2f kcal\n", total);
-    printf("Average per day           = %.2f kcal\n", total / 5.0);
+    if (n <= 1)
+        printf("Not prime");
+    else if (checkPrime(n, 2))
+        printf("Prime");
+    else
+        printf("Not prime");
 
     return 0;
 }
